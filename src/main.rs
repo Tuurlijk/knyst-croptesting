@@ -122,6 +122,7 @@ fn main() -> Result<()> {
 
                 match args.multiplier.as_str() {
                     "mult" => {
+                        println!("Outputting tone using two `Mult` amps inside the loop.");
                         for i in 0..buffer_channels {
                             let amp = graph.push(Mult);
                             graph.connect(wav_writer_node.to_graph_out().from_index(i).to_index(i))?;
@@ -132,6 +133,7 @@ fn main() -> Result<()> {
                         }
                     }
                     "multiplier" | _ => {
+                        println!("Outputting tone using a single `Multiplier` amp outside the loop.");
                         let amp = graph.push(Multiplier);
                         for i in 0..buffer_channels {
                             graph.connect(wav_writer_node.to_graph_out().from_index(i).to_index(i))?;
