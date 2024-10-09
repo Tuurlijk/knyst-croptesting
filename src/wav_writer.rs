@@ -90,7 +90,6 @@ impl WavWriterGen {
 impl Drop for WavWriterGen {
     fn drop(&mut self) {
         if let Some(writer) = self.writer.take() {
-            println!("Finalizing wav writer");
             if let Err(e) = writer.finalize() {
                 eprintln!("Error finalizing WAV writer: {}", e);
             }
